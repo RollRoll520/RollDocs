@@ -1,0 +1,80 @@
+site_name: Roll Docs #文档名称
+
+theme:
+  name: material #主题，使用内置主题，也可以在extra_css中定义
+  language: zh 
+  logo: https://roll0814.cn/ftp-images/roll/indexIcon.jpg #左上角logo
+  favicon: https://roll0814.cn/ftp-images/roll/indexIcon.jpg #页面图标
+  features:
+    # - header.autohide #滚动时自动隐藏首部
+    - navigation.footer
+    - navigation.instant
+    - navigation.tracking #url自动跟踪当前阅读位置
+    # - navigation.tabs #开启上方导航栏
+    # - navigation.tabs.sticky #上方导航栏的粘滞性
+    # - navigation.sections #决定左侧导航栏是否能够折叠，使用则不能折叠
+    # - navigation.expand #决定左侧导航栏是否显示所有节，使用则显示
+    # - toc.integrate #取消了右侧导航栏，而是放在了左边
+    - navigation.top #上划时出现回到页首按钮
+    - content.code.copy #开启复制按钮
+    # - navigation.indexes #设置一个节的主页
+  palette: 
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: --md-primary-fg-color--light
+      accent: deep purple
+      toggle:
+        icon: material/weather-night 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: --md-primary-fg-color--dark
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
+  - javascripts/shortcuts.js #在js文件中添加了默认快捷键
+
+extra:
+  homepage: https://roll0814.cn #左上方logo链接
+
+extra:
+  social:
+    - icon: fontawesome/brands/bilibili #social icon
+      link: https://space.bilibili.com/445528299 #social link
+      name: 一只roll #link title
+
+plugins:
+  - search
+  - table-reader
+
+# enable emoji and icon
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - md_in_html
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+
+copyright: Copyright &copy; 2022 - 2023 Mr.Roll

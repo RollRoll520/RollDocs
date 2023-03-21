@@ -1,0 +1,16 @@
+:root {
+  --md-primary-fg-color:        #ffb5b5;
+  --md-primary-fg-color--light: #ffabab;
+  --md-primary-fg-color--dark:  #f54949;
+}
+
+:root > * {
+    --md-code-hl-color:   #e1ffd4;
+    --md-code-bg-color:   #fff5f5;
+    --md-code-fg-color: #717171;
+    --md-code-hl-string-color: #ff7878;
+}
+/* 为icon添加颜色 */
+.qq {
+  color: #1DA1F2;
+}
