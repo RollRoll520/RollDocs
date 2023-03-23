@@ -1,3 +1,7 @@
+---
+icon: material/file/document/edit
+---
+
 # LearnMkdocs
 
 ## hide 的用法

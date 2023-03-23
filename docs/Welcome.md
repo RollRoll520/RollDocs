@@ -3,6 +3,8 @@ hide:
 #   - navigation
   - toc
   - foot
+icon:
+  material/home
 --- 
 <!-- 以上用于隐藏左侧导航栏和右侧导航栏 -->
 
