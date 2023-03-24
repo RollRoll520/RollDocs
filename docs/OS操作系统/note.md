@@ -6,9 +6,10 @@
 
 ---
 
-> 任务目的：将用户程序函数调用关系通过'print_backtrace'回溯打印出来
+!!! abstract "任务目的"
+    将用户程序函数调用关系通过'print_backtrace'回溯打印出来
 
-需要完善的内容
+### 需要完善的内容
 
 - 系统调用路径
 
@@ -25,7 +26,7 @@
 
 - 再通过用户栈找到函数的返回地址，需要将虚拟地址转换为源程序中的符号。因此需要了解elf文件中的符号节(.symTab section)(symTab段是ELF中存储符号表的段，主要用于编译链接，也可以参与动态库的加载)以及字符串节(.strTab section)的相关知识。通过两个节里存储的内容以及存储的格式等内容。
 
-Tips
+### Tips
 
 - elf文件
 
@@ -36,21 +37,44 @@ Tips
 
 - ELF头存储的内容:shoff记录了第一个Section Header的位置，shentsize代表了一个Section Header的大小，shnum代表一共有多少个Section Header，shstrndx代表了String Table的索引值
 
-```c
-typedef struct{  /*Section Header 的结构*/
-    Elf32_Word sh_name; /*Section name (string tbl index)*/  
-    Elf32_Word sh_type; /*Section type*/  
-    Elf32_Word sh_flags; /*Section flags*/  
-    Elf32_Addr sh_addr; /*Section virtual addr at execution*/  
-    Elf32_Off sh_offset; /*Section file offset*/  
-    Elf32_Word sh_size; /*Section size in bytes*/  
-    Elf32_Word sh_link; /*Link to another section*/  
-    Elf32_Word sh_info; /*Additional section information*/  
-    Elf32_Word sh_addralign; /*Section alignment*/  
-    Elf32_Word sh_entsize; /*Entry size if section holds table*/
-    }
-    Elf32_Shdr;
-```
+???+ note "ELF Header 和 Section Header"
+    === "ELF Header 的结构"
+        ```c
+        // elf header structure
+        typedef struct elf_header_t {
+          uint32 magic;
+          uint8 elf[12];
+          uint16 type;      /* Object file type */
+          uint16 machine;   /* Architecture */
+          uint32 version;   /* Object file version */
+          uint64 entry;     /* Entry point virtual address */
+          uint64 phoff;     /* Program header table file offset */
+          uint64 shoff;     /* Section header table file offset */
+          uint32 flags;     /* Processor-specific flags */
+          uint16 ehsize;    /* ELF header size in bytes */
+          uint16 phentsize; /* Program header table entry size */
+          uint16 phnum;     /* Program header table entry count */
+          uint16 shentsize; /* Section header table entry size */
+          uint16 shnum;     /* Section header table entry count */
+          uint16 shstrndx;  /* Section header string table index */
+        } elf_header;
+        ```
+    === "Section Header 的结构"
+        ```c
+        typedef struct{  /*Section Header 的结构*/
+            Elf32_Word sh_name; /*Section name (string tbl index)*/  
+            Elf32_Word sh_type; /*Section type*/  
+            Elf32_Word sh_flags; /*Section flags*/  
+            Elf32_Addr sh_addr; /*Section virtual addr at execution*/  
+            Elf32_Off sh_offset; /*Section file offset*/  
+            Elf32_Word sh_size; /*Section size in bytes*/  
+            Elf32_Word sh_link; /*Link to another section*/  
+            Elf32_Word sh_info; /*Additional section information*/  
+            Elf32_Word sh_addralign; /*Section alignment*/  
+            Elf32_Word sh_entsize; /*Entry size if section holds table*/
+            }
+            Elf32_Shdr;
+        ```
 
 - 通过String Table可以读取出每个Section Header对应的Section的名字，通过C语言的字符串比较函数，可以读取我们想要的Section的内容。
 - 对于.symtab和.strtab，需要查询.symtab表中每一个symbols的结构定义，其中的name也是一个uint32类型的变量
@@ -60,3 +84,144 @@ typedef struct{  /*Section Header 的结构*/
 ```C
 uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
 ```
+
+!!! note "获取elf"
+    === "ctx-info"
+        ??? note "info define"
+            ```c
+            typedef struct elf_info_t {
+              spike_file_t *f;
+              process *p;
+            } elf_info;
+            ```
+        ```c
+        Try print ctx->info:-2147457560
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+        ---
+        Try print ctx->info:-2147457560
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+        ---
+        Try print ctx->info:-2147457560
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取msg->f"
+        ??? note "msg"
+            ```c title="msg define"
+            elf_info *msg = (elf_info *)ctx->info;
+            ```
+            ```c title="process define"
+            // the extremely simple definition of process, used for begining labs of PKE
+            typedef struct process_t {
+              // pointing to the stack used in trap handling.
+              uint64 kstack;
+              // trapframe storing the context of a (User mode) process.
+              trapframe* trapframe;
+            }process;
+            ```
+        ```c
+        Try print msg->f:-2147463144
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print msg->f:-2147463144
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print msg->f:-2147463144
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取magic"
+        ```c
+        Try print ctx->header->magic:-2147457392
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->header->magic:1179403647
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->header->magic:1179403647
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取type"
+        ```c title="Object file type"
+        Try print ctx->header->type:5132
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->header->type:2
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->header->type:2
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取shoff"
+        ```c title="Section header table file offset"
+        Try print ctx->ehdr.shoff:-2147457368
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->ehdr.shoff:15840
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->ehdr.shoff:15840
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取shentsize"
+        ```c title="Section header table entry size"
+        Try print ctx->ehdr.shentsize:0
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->ehdr.shentsize:64
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->ehdr.shentsize:64
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取shnum"
+        ```c title="Section header table entry count"
+        Try print ctx->ehdr.shnum:1
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->ehdr.shnum:17
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->ehdr.shnum:17
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
