@@ -26,7 +26,7 @@
 
 - 再通过用户栈找到函数的返回地址，需要将虚拟地址转换为源程序中的符号。因此需要了解elf文件中的符号节(.symTab section)(symTab段是ELF中存储符号表的段，主要用于编译链接，也可以参与动态库的加载)以及字符串节(.strTab section)的相关知识。通过两个节里存储的内容以及存储的格式等内容。
 
-### Tips
+### Elf文件
 
 - elf文件
 
@@ -39,8 +39,7 @@
 
 ???+ note "ELF Header 和 Section Header"
     === "ELF Header 的结构"
-        ```c
-        // elf header structure
+        ```c title="elf header"
         typedef struct elf_header_t {
           uint32 magic;
           uint8 elf[12];
@@ -60,7 +59,7 @@
         } elf_header;
         ```
     === "Section Header 的结构"
-        ```c
+        ```c title="Section Header"
         typedef struct{  /*Section Header 的结构*/
             Elf32_Word sh_name; /*Section name (string tbl index)*/  
             Elf32_Word sh_type; /*Section type*/  
@@ -75,6 +74,38 @@
             }
             Elf32_Shdr;
         ```
+    === "section header type 取值"
+        ```c title="sh_type"
+        0 SHT_NULL 无对应节区，该节其他字段取值无意义
+        1 SHT_PROGBITS 程序数据
+        2 SHT_SYMTAB 符号表
+        3 SHT_STRTAB 字符串表
+        4 SHT_RELA 带附加的重定位项
+        5 SHT_HASH 符号哈希表
+        6 SHT_DYNAMIC 动态链接信息
+        7 SHT_NOTE 提示性信息
+        8 SHT_NOBITS 无数据程序空间（bss）
+        9 SHT_REL 无附加的重定位项
+        10 SHT_SHLIB 保留
+        11 SHT_DYNSYM 动态链接符号表
+        14 SHT_INIT_ARRAY 构造函数数组
+        15 SHT_FINI_ARRAY 析构函数数组
+        16 SHT_PREINIT_ARRAY
+        17 SHT_GROUP
+        18 SHT_SYMTAB_SHNDX
+        19 SHT_NUM
+        0x70000000 SHT_LOPROC
+        0x7fffffff SHT_HIPROC
+        0x80000000 SHT_LOUSER
+        0x8fffffff SHT_HIUSER
+        ```
+    === "section header flags取值"
+        ```c title="sh_flags"
+        1 SHF_WRITE
+        2 SHF_ALLOC
+        4 SHF_EXECINSTR
+        8 SHF_MASKPROC
+        ```
 
 - 通过String Table可以读取出每个Section Header对应的Section的名字，通过C语言的字符串比较函数，可以读取我们想要的Section的内容。
 - 对于.symtab和.strtab，需要查询.symtab表中每一个symbols的结构定义，其中的name也是一个uint32类型的变量
@@ -84,6 +115,8 @@
 ```C
 uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
 ```
+
+### 实验过程
 
 !!! note "获取elf"
     === "ctx-info"
@@ -221,6 +254,23 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
         Try print offset:64
 
         Try print ctx->ehdr.shnum:17
+        Try print dest:-2130706432
+        Try print nb:1052
+        Try print offset:4096
+        ```
+    === "获取shstrndx"
+        ```c title="Section header string table index(String Table的索引值)"
+        Try print ctx->ehdr.shstrndx:0
+        Try print dest:-2147457536
+        Try print nb:64
+        Try print offset:0
+
+        Try print ctx->ehdr.shstrndx:16
+        Try print dest:-2147457688
+        Try print nb:56
+        Try print offset:64
+
+        Try print ctx->ehdr.shstrndx:16
         Try print dest:-2130706432
         Try print nb:1052
         Try print offset:4096
