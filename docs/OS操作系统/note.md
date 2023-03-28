@@ -128,18 +128,19 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
             } elf_info;
             ```
         ```c
-        Try print ctx->info:-2147457560
-        Try print dest:-2147457536
+        ///ctx:800065f8
+        Try print ctx->info:0x800065e8
+        Try print dest:80006600
         Try print nb:64
         Try print offset:0
         ---
-        Try print ctx->info:-2147457560
-        Try print dest:-2147457688
+        Try print ctx->info:0x800065e8
+        Try print dest:80006568
         Try print nb:56
         Try print offset:64
         ---
-        Try print ctx->info:-2147457560
-        Try print dest:-2130706432
+        Try print ctx->info:0x800065e8
+        Try print dest:81000000
         Try print nb:1052
         Try print offset:4096
         ```
@@ -158,35 +159,35 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
             }process;
             ```
         ```c
-        Try print msg->f:-2147463144
-        Try print dest:-2147457536
+        Try print msg->f:0x80005018
+        Try print dest:80006600
         Try print nb:64
         Try print offset:0
 
-        Try print msg->f:-2147463144
-        Try print dest:-2147457688
+        Try print msg->f:0x80005018
+        Try print dest:80006568
         Try print nb:56
         Try print offset:64
 
-        Try print msg->f:-2147463144
-        Try print dest:-2130706432
+        Try print msg->f:0x80005018
+        Try print dest:81000000
         Try print nb:1052
         Try print offset:4096
         ```
     === "获取magic"
         ```c
-        Try print ctx->header->magic:-2147457392
-        Try print dest:-2147457536
+        Try print ctx->ehdr.magic:0x80006690
+        Try print dest:80006600
         Try print nb:64
         Try print offset:0
 
-        Try print ctx->header->magic:1179403647
-        Try print dest:-2147457688
+        Try print ctx->ehdr.magic:0x464c457f
+        Try print dest:80006568
         Try print nb:56
         Try print offset:64
 
-        Try print ctx->header->magic:1179403647
-        Try print dest:-2130706432
+        Try print ctx->ehdr.magic:0x464c457f
+        Try print dest:81000000
         Try print nb:1052
         Try print offset:4096
         ```
@@ -209,18 +210,18 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
         ```
     === "获取shoff"
         ```c title="Section header table file offset"
-        Try print ctx->ehdr.shoff:-2147457368
-        Try print dest:-2147457536
+        Try print ctx->ehdr.shoff:0x800066a8
+        Try print dest:80006600
         Try print nb:64
         Try print offset:0
-
-        Try print ctx->ehdr.shoff:15840
-        Try print dest:-2147457688
+        
+        Try print ctx->ehdr.shoff:0x00003de0(15840)
+        Try print dest:80006568
         Try print nb:56
         Try print offset:64
-
-        Try print ctx->ehdr.shoff:15840
-        Try print dest:-2130706432
+        
+        Try print ctx->ehdr.shoff:0x00003de0(15840)
+        Try print dest:81000000
         Try print nb:1052
         Try print offset:4096
         ```
@@ -275,3 +276,5 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
         Try print nb:1052
         Try print offset:4096
         ```
+!!! warning "ToDo"
+    找到section header！

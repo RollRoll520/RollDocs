@@ -72,3 +72,10 @@ icon: material/video/3d
     * gltfpack可以压缩glb/gltf两种格式；而xr-frame-cli仅能压缩gltf文件
 
     * gltfpack生成的gltf/glb文件可能在被xr-frame加载时存在错误
+
+!!! tip "Todo"
+    1. 完成模型的导出，并进行足够的优化
+    2. 成功加载场景模型
+    3. 实现相机的移动
+    4. 实现场景的交互，在场景中添加button
+    5. 实现AR
