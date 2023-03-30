@@ -278,3 +278,20 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
         ```
 !!! warning "ToDo"
     找到section header！
+
+## lab1_challenge2
+
+!!! note "任务目的"
+    修改内核（包括machine文件夹下）的代码，使得用户程序在发生异常时，内核能够输出触发异常的用户程序的源文件名和对应代码行
+
+### 待完善的内容
+
+>1. 本实验在```elf.c```中给出了```debug_line```段的解析函数*```make_addr_line```*。
+>
+>2. 这个函数接受三个参数，```ctx```为```elf```文件的上下文指针，这个可以参考文件中的其他函数
+>
+>3. ```debug_line```为指向```.debug_line```段数据的指针
+>
+> 你需要读取```elf```文件中名为```.debug_line```的段保存到缓冲区中
+>
+> 然后将缓冲区指针传入这个参数；```length```为```.debug_line```段数据的长度。

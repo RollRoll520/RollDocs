@@ -30,6 +30,15 @@ icon: material/video/3d
 
 ### [SeinJSUnityToolkit](https://github.com/hiloteam/SeinJSUnityToolkit)
 
+1. 官方提示下载unitypackage到unity即可使用SeinToolkit，但是最新版的包导入项目中后存在问题，可能是因为版本不兼容。
+2. 通过文档中提示的通过npm创建sein命令行工具可以穿件sein项目**但下载的版本是1.2.6，最新版为1.3.3**，并且通过sein new创建的sein项目必须用
+
+=== "导入fbx并导出"
+    1. 导入fbx时出现无材质的现象
+
+!!! bug "踩的坑"
+    * 通过gltfpack的-cc拓展指令压缩的gltf模型无法正确import到sein项目中
+
 ## 优化gltf文件
 
 ### [gltfpack](https://meshoptimizer.org/gltf/)优化压缩
