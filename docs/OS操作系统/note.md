@@ -7,7 +7,7 @@
 ---
 
 !!! abstract "任务目的"
-    将用户程序函数调用关系通过'print_backtrace'回溯打印出来
+    将用户程序函数调用关系通过`#!print_backtrace`回溯打印出来
 
 ### 需要完善的内容
 
@@ -291,7 +291,5 @@ uint64 elf_fpread(elf_ctx *ctx, void *dest, uint64 nb, uint64 offset)
 >2. 这个函数接受三个参数，```ctx```为```elf```文件的上下文指针，这个可以参考文件中的其他函数
 >
 >3. ```debug_line```为指向```.debug_line```段数据的指针
->
 > 你需要读取```elf```文件中名为```.debug_line```的段保存到缓冲区中
->
 > 然后将缓冲区指针传入这个参数；```length```为```.debug_line```段数据的长度。
