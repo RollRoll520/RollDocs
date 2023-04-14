@@ -1,0 +1,1171 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../chapter1_riscv/">
+      
+      
+        <link rel="next" href="../chapter3_traps/">
+      
+      <link rel="icon" href="https://roll0814.cn/ftp-images/roll/indexIcon.jpg">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.3">
+    
+    
+      
+        <title>Chapter2 installation - Roll Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.c4a75a56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color--light" data-md-color-accent="deep-purple">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Roll Docs" class="md-header__button md-logo" aria-label="Roll Docs" data-md-component="logo">
+      
+  <img src="https://roll0814.cn/ftp-images/roll/indexIcon.jpg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Roll Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter2 installation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="--md-primary-fg-color--light" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="--md-primary-fg-color--dark" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RollRoll520/RollDocs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RollRoll520/RollDocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Roll Docs" class="md-nav__button md-logo" aria-label="Roll Docs" data-md-component="logo">
+      
+  <img src="https://roll0814.cn/ftp-images/roll/indexIcon.jpg" alt="logo">
+
+    </a>
+    Roll Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RollRoll520/RollDocs" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RollRoll520/RollDocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Welcome/" class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          LearnTech
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          LearnTech
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnGLTF/" class="md-nav__link">
+        xr-frame资源
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnGit/" class="md-nav__link">
+        Git的使用（备忘）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnKoa/" class="md-nav__link">
+        Koa2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnMkdocs/" class="md-nav__link">
+        Mkdocs文档用法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnOffiaccount/" class="md-nav__link">
+        微信公众号
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnUnityCorgiEngine/" class="md-nav__link">
+        Corgi Engine（柯基引擎）
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LearnTech/LearnWXMiniProgram/" class="md-nav__link">
+        微信小程序
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          OS操作系统
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          OS操作系统
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../note/" class="md-nav__link">
+        操作系统课程设计
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          Pke doc
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Pke doc
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter1_riscv/" class="md-nav__link">
+        Chapter1 riscv
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter2 installation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Chapter2 installation
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    目录
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 操作系统部分实验环境安装
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 操作系统部分实验环境安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    2.1.1 安装开发环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    2.1.2 安装支撑软件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213" class="md-nav__link">
+    2.1.3 头歌平台
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-riscv-pke" class="md-nav__link">
+    2.2 riscv-pke（实验）代码的获取
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 riscv-pke（实验）代码的获取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    代码获取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    环境验证
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-pke" class="md-nav__link">
+    2.3 PKE实验的组成
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter3_traps/" class="md-nav__link">
+        Chapter3 traps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter4_memory/" class="md-nav__link">
+        Chapter4 memory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter5_process/" class="md-nav__link">
+        Chapter5 process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_device_remove/" class="md-nav__link">
+        Chapter6 device remove
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter6_riscv_on_pynq/" class="md-nav__link">
+        Chapter6 riscv on pynq
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter7_device/" class="md-nav__link">
+        Chapter7 device
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    目录
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 操作系统部分实验环境安装
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 操作系统部分实验环境安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    2.1.1 安装开发环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    2.1.2 安装支撑软件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#213" class="md-nav__link">
+    2.1.3 头歌平台
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-riscv-pke" class="md-nav__link">
+    2.2 riscv-pke（实验）代码的获取
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 riscv-pke（实验）代码的获取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    代码获取
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    环境验证
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-pke" class="md-nav__link">
+    2.3 PKE实验的组成
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/RollRoll520/RollDocs/edit/master/docs/OS操作系统/pke-doc/chapter2_installation.md" title="编辑此页" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+    </a>
+  
+  
+
+
+<hr />
+<hr />
+<h1 id="_1">第二章．实验环境配置与实验构成</h1>
+<h3 id="_2">目录</h3>
+<ul>
+<li><a href="#environments">2.1 操作系统部分实验环境安装</a></li>
+<li><a href="#subsec_osenvironments">2.1.1 安装开发环境</a></li>
+<li><a href="#subsec_softwarepackages">2.1.2 安装支撑软件</a></li>
+<li><a href="#subsec_educoder">2.1.3 头歌平台</a> </li>
+<li><a href="#preparecode">2.2 riscv-pke（实验）代码的获取</a></li>
+<li><a href="#pke_experiemnts">2.3 PKE实验构成</a></li>
+</ul>
+<p><a name="environments"></a></p>
+<h2 id="21">2.1 操作系统部分实验环境安装</h2>
+<p><a name="subsec_osenvironments"></a></p>
+<h3 id="211">2.1.1 安装开发环境</h3>
+<p>安装即将编译、构建（build）和执行riscv-pke的环境，我们给出以下3种选择：</p>
+<p><strong>方案一：Windows Subversion Linux（WSL）</strong></p>
+<p>如果读者的工作环境是Windows10的专业版，可采用WSL（Windows Subversion Linux）+MobaXterm的组合来搭建PKE的实验环境。在Windows10专业版上配置该环境的说明，可以参考<a href="https://zhuanlan.zhihu.com/p/81769058">这里</a>。关于WSL，<strong>应尽量使用WSL1不要升级到WSL2</strong>，因为如果代码存放的位置在/mnt目录下，WSL1中运行编译、构建的速度比WSL2快很多（参考<a href="https://github.com/microsoft/WSL/issues/4197">这里</a>）。</p>
+<p>需要说明的是，PKE实验并不需要中文字体、图形界面或者JAVA的支持，所以读者在安装WSL的过程中无须安装于汉化相关的包，也无需安装xfce、JDK等。只需要安装WSL的基础环境后，再按照<a href="#subsec_softwarepackages">下一节</a>的说明继续完成rsicv-pke开发环境的安装。</p>
+<p><strong>方案二：Ubuntu或者其他Linux发行版</strong></p>
+<p>读者可以采用VMware、VirtualBox等软件，在客户机中安装客户机，再在客户机中安装执行支撑软件来构建实验环境。客户机的选择我们推荐采用Ubuntu 16.04LTS（x86_64）或更高版本的Ubuntu发行版（如18.04LTS、20.04LTS或更高）操作系统，或者<strong>华为openEuler操作系统</strong>。我们未在其他系统（如arch，RHEL等）上做过测试，但理论上只要将实验中所涉及到的安装包替换成其他系统中的等效软件包，就可完成同样效果。</p>
+<p><strong>方案三：头歌实验平台</strong></p>
+<p>我们在EduCoder实验平台（网址：https://www.educoder.net ）上创建了riscv-pke的同步实验课程，课程的终端环境（docker虚拟机）中已完成实验所需软件工具的安装，所以如果读者是在头歌平台上选择的本课程，则可跳过本节的实验环境搭建过程以及执行支撑软件的安装过程，直接进入通过终端（命令行）进入实验环境，头歌实验平台的使用方法见<a href="#subsec_educoder">2.1.3节</a>。</p>
+<p><a name="subsec_softwarepackages"></a></p>
+<h3 id="212">2.1.2 安装支撑软件</h3>
+<p>riscv-pke的源代码的编译（compile）、构建（build）需要专门的risc-v交叉编译器，所构建的代理内核（及应用）的执行也需要专门的risc-v虚拟机（spike）的支持。这一节将介绍这些支撑软件的安装过程，需要说明的是，该安装过程适合操作系统环境（见<a href="#subsec_osenvironments">2.1.1节</a>）为<strong>WSL</strong>，或者<strong>Ubuntu发行版</strong>的情况。对于头歌实验平台，则无需对执行支撑软件进行任何安装。</p>
+<p>PKE实验涉及到的执行支撑软件有：</p>
+<ul>
+<li>RISC-V交叉编译器（及附带的主机编译器、构造工具等）；</li>
+<li>spike模拟器；</li>
+</ul>
+<p>以下分别介绍这些执行支撑软件的安装过程，我们给出以下三种方案：</p>
+<p><strong>方案一：下载自包含交叉编译器+执行环境</strong></p>
+<p>● 第一步，安装依赖库</p>
+<p>RISC-V交叉编译器的执行仍然需要一些本地支撑软件包，可使用以下命令安装：</p>
+<p><code>$ sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev device-tree-compiler</code></p>
+<p>● 第二步，下载自包含交叉编译器+执行环境</p>
+<p>到<a href="../resources/riscv64-elf-gcc-20210923.tgz"><strong>这里</strong></a>下载自包含交叉编译器+执行环境的tgz包（大小约为72MB，感谢张杰老师为大家制作），采用以下命令解开tgz包：</p>
+<p>$ tar xf riscv64-elf-gcc-20210923.tgz</p>
+<p>解压完成后，将在当前目录产生名为<strong>riscv64-elf-gcc</strong>的目录，<strong>该目录下包含RISC-V交叉编译器以及spike模拟器</strong>。</p>
+<p>● 第三步，设置环境变量</p>
+<p><code>$ export RISCV=$PWD/riscv64-elf-gcc</code></p>
+<p><code>$ export PATH=$PATH:$RISCV/bin</code></p>
+<p>以上命令设置了RISCV环境变量，指向在第二步中的tgz包展开目录，并且将交叉编译器的可执行文件所在的目录加入到了系统路径中。这样，我们就可以在riscv-pke的工作目录调用RISC-V交叉编译器所包含的工具软件了。</p>
+<p><strong>建议读者将以上两个export命令，加入到<code>~/.bashrc</code>，<code>~/.profile</code>或 <code>/etc/profile</code>文件的末尾（注意替换$PWD环境变量）</strong>。这样，每次重新启动（并打开终端程序）后，系统会自动设置这两个环境变量，而不用每次都要手动输入以上命令。</p>
+<p><strong>方案二：完整自行构建交叉编译器和执行环境</strong></p>
+<p>对于新安装的Ubuntu操作系统，我们强烈建议读者在新装环境中完整构建（build）RISC-V交叉编译器，以及spike模拟器。如果强调环境的可移植性，可以考虑在虚拟机中安装完整系统和环境，之后将虚拟机进行克隆和迁移。</p>
+<p>RISC-V交叉编译器是与Linux自带的GCC编译器类似的一套工具软件集合，不同的是，x86_64平台上Linux自带的GCC编译器会将源代码编译、链接成为适合在x86_64平台上运行的二进制代码（称为native code），而RISC-V交叉编译器则会将源代码编译、链接成为在RISC-V平台上运行的代码。后者（RISC-V交叉编译器生成的二进制代码）是无法在x86_64平台（即x86_64架构的Ubuntu环境下）直接运行的，它的运行需要模拟器（我们采用的spike）的支持。</p>
+<p>一般情况下，我们称x86_64架构的Ubuntu环境为host，而在host上执行spike后所虚拟出来的RISC-V环境，则被称为target。RISC-V交叉编译器的构建（build）、安装过程如下：</p>
+<p>● 第一步，安装依赖库</p>
+<p>RISC-V交叉编译器的构建需要一些本地支撑软件包，可使用以下命令安装：</p>
+<p><code>$ sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev device-tree-compiler</code></p>
+<p>● 第二步，获取RISC-V交叉编译器的源代码</p>
+<p>有两种方式获得RISC-V交叉编译器的源代码：一种是通过源代码仓库获取，使用以下命令：</p>
+<p><code>$ git clone --recursive https://github.com/riscv/riscv-gnu-toolchain.git</code></p>
+<p>但由于RISC-V交叉编译器的仓库包含了Qemu模拟器的代码，下载后的目录占用的磁盘空间大小约为4.8GB，（从国内下载）整体下载所需的时间较长。为了方便国内用户，我们提供了另一种方式就是通过百度云盘获取源代码压缩包，链接和提取码如下：</p>
+<p><code>链接: https://pan.baidu.com/s/1cMGt0zWhRidnw7vNUGcZhg 提取码: qbjh</code></p>
+<p>从百度云盘下载RISCV-packages/riscv-gnu-toolchain-clean.tar.gz文件（大小为2.7GB），再在Ubuntu环境下解压这个.tar.gz文件，采用如下命令行：</p>
+<p><code>$ tar xf  riscv-gnu-toolchain-clean.tar.gz</code></p>
+<p>之后就能够看到和进入当前目录下的riscv-gnu-toolchain文件夹了。</p>
+<p>● 第三步，构建（build）RISC-V交叉编译器</p>
+<p><code>$ cd riscv-gnu-toolchain</code></p>
+<p><code>$ ./configure --prefix=[your.RISCV.install.path]</code></p>
+<p><code>$ make</code></p>
+<p>以上命令中，[your.RISCV.install.path]指向的是你的RISC-V交叉编译器安装目录。如果安装是你home目录下的一个子目录（如~/riscv-install-dir），则最后的make install无需sudoer权限。但如果安装目录是系统目录（如/opt/riscv-install-dir），则需要sudoer权限（即在make install命令前加上sudo）。</p>
+<p>● 第四步，设置环境变量</p>
+<p><code>$ export RISCV=[your.RISCV.install.path]</code></p>
+<p><code>$ export PATH=$PATH:$RISCV/bin</code></p>
+<p>以上命令设置了RISCV环境变量，指向在第三步中的安装目录，并且将交叉编译器的可执行文件所在的目录加入到了系统路径中。这样，我们就可以在PKE的工作目录调用RISC-V交叉编译器所包含的工具软件了。</p>
+<p><strong>建议读者将以上两个export命令，加入到<code>~/.bashrc</code>，<code>~/.profile</code>或 <code>/etc/profile</code>文件的末尾</strong>。这样，每次重新启动（并打开终端程序）后，系统会自动设置这两个环境变量，而不用每次都要手动输入以上命令。</p>
+<p>● 第五步，安装spike模拟器</p>
+<p>接下来，安装spkie模拟器。首先取得spike的源代码，有两个途径：一个是从github代码仓库中获取：</p>
+<p><code>$ git clone https://github.com/riscv/riscv-isa-sim.git</code></p>
+<p>也可以从百度云盘中下载spike-riscv-isa-sim.tar.gz文件（约4.2MB），然后用tar命令解压缩。百度云盘的地址，以及tar命令解压缩可以参考2.1.1节RISC-V交叉编译器的安装过程。获得spike源代码或解压后，将在本地目录看到一个riscv-isa-sim目录。</p>
+<p>接下来构建（build）spike，并安装：</p>
+<p><code>$ cd riscv-isa-sim</code></p>
+<p><code>$ ./configure --prefix=$RISCV</code></p>
+<p><code>$ make</code></p>
+<p><code>$ make install</code></p>
+<p>在以上命令中，我们假设RISCV环境变量已经指向了RISC-V交叉编译器的安装目录，即[your.RISCV.install.path]。</p>
+<p><a name="subsec_educoder"></a></p>
+<h3 id="213">2.1.3 头歌平台</h3>
+<p>为支撑《操作系统原理》课程的教学，PKE系列实验在<a href="https://www.educoder.net/">头歌平台（educoder.net）</a>上进行了部署。</p>
+<p><img alt="" src="../pictures/educoder_1.png" /></p>
+<p>读者可以在头歌平台的主页上，通过选择左上角的“实践课程”入口，然后在搜索框中输入“基于RISCV的操作系统实验”找到PKE实验对应的实践课程：</p>
+<p><img alt="" src="../pictures/educoder_2.png" /></p>
+<p>进入课程后，可以先阅读课程实验说明，翻到课程下的实验后就可以通过点击“开始实战”来进入实验了。</p>
+<p><img alt="" src="../pictures/educoder_3.png" /></p>
+<p>进入实战后，会看到如下的界面：</p>
+<p><img alt="" src="../pictures/educoder_4.png" /></p>
+<p>以上界面中，左侧显示的是实验的任务描述以及参考文献链接。右侧是做实验要用到（修改）的源代码文件，在右侧界面的顶端，有一个“命令行”标签，点击进入后可进入命令行模式；顶端的右侧的文件夹图标点击后会出现整个文件目录树，读者可以通过目录树选择要阅读的文件；最后，在右下角有个“评测”按钮，读者可以在完成实验后点击该按钮对自己的实验结果进行评测。</p>
+<p><strong>实际上，读者看到的这个界面背后是一个Linux docker虚拟机，在该虚拟机中已经安装好了实验所需要的环境</strong>。包括各种开发工具包、RISC-V交叉编译器等；而评测按钮按下后，会触发虚拟机中的构建（build）脚本，该脚本会自动对代码树进行构建、执行给定的用户程序（如lab1_1中的user/app_helloworld）、最后根据输出的内容对实验结果的正确性进行判断。</p>
+<p><strong>然而，由于在头歌平台上的课程，每个实验都对应了一个独立的代码仓库，所以从一个实验到另一个实验的切换无法通过<code>git merge</code>命令实现对上一个实验的实验结果的继承</strong>。学生在进行实验切换时，需要将之前实验的代码手动地贴入下一个实验的对应文件中。这一点，我们在课程的“课程须知”中做了说明。一个比较好的方法，是采用类似Notepad++这样类型的软件，记录每个实验的答案（包括答案所在的文件），并在切换到下一个实验时，将答案拷贝粘贴到对应文件。</p>
+<p>考虑到头歌平台的用户身份（主要有老师和学生）的不同，以及老师开课和学生选课的过程的不同，头歌平台给出了<a href="../pictures/EduCoder%E5%B9%B3%E5%8F%B0%EF%BC%88%E6%95%99%E5%B8%88%EF%BC%89%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8Cv5.0.0_20200924.pdf">教师使用手册</a>和<a href="../pictures/EduCoder%E5%B9%B3%E5%8F%B0%EF%BC%88%E5%AD%A6%E7%94%9F%EF%BC%89%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8Cv5.0.0_20200924.pdf">学生使用手册</a>。<strong>简单来说，为了将头歌平台上的PKE实验课程应用到《操作系统原理》课程教学，教师需要在头歌平台上建立一个教学课堂，并在该教学课堂中选用“基于RISCV的操作系统实验”课程，将该实验课程中的实验有选择性的导入到所建立的教学课堂中，并最后吧所建立的教学课堂的邀请码发给学生</strong>。对于学生而言，只需要用老师所给的邀请码在头歌平台上加入教学课堂即可。以上过程都可以通过头歌主页右上侧的“+”符号（将鼠标移动到该符号上）对应的弹出菜单中选择即可。</p>
+<p>“基于RISCV的操作系统实验”课程的设计，充分考虑到了实验的模块化以及学制安排的问题。课程共设计了15个实验，其中包含9个基础实验和6个挑战实验（随着时间推移，这个列表可能会进一步增加），实验间的关联见<a href="#pke_experiemnts">PKE实验的组成</a>。<strong>教师开设教学课堂的时候，可以根据学生的水平、教学预期按需选择不同的实验内容，分期分批地给学生安排实验任务</strong>。</p>
+<p><a name="preparecode"></a></p>
+<h2 id="22-riscv-pke">2.2 riscv-pke（实验）代码的获取</h2>
+<p>以下讨论，我们假设读者是使用的Ubuntu/openEuler操作系统，且已按照<a href="#subsec_softwarepackages">2.1.2</a>的说明安装了需要的工具软件。对于头歌平台而言，代码已经部署到实验环境，读者可以通过头歌网站界面或者界面上的“命令行”选项看到实验代码，所以头歌平台用户无须考虑代码获取环节。</p>
+<h4 id="_3">代码获取</h4>
+<p>在Ubuntu/WSL/openEuler操作系统，可以通过以下命令下载riscv-pke的实验代码：</p>
+<p>（克隆代码仓库）</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="sb">`</span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/hustos/riscv-pke.git
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Cloning<span class="w"> </span>into<span class="w"> </span><span class="s1">&#39;riscv-pke-prerelease&#39;</span>...
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">195</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">195</span>/195<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">195</span>/195<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">227</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">107</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">32</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Receiving<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">227</span>/227<span class="o">)</span>,<span class="w"> </span><span class="m">64</span>.49<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">335</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">107</span>/107<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.<span class="sb">`</span>
+</span></code></pre></div>
+<p>克隆完成后，将在当前目录应该能看到riscv-pke-prerelease目录。这时，可以到riscv-pke目录下查看文件结构，例如：</p>
+<p><code>$ cd riscv-pke</code></p>
+<p>切换到lab1_1_syscall分支（因为lab1_1_syscall是默认分支，这里也可以不切换）
+<code>$ git checkout lab1_1_syscall</code></p>
+<p><code>$ tree -L 3</code></p>
+<p>（将看到如下输出）</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── LICENSE.txt
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── Makefile
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── README.md
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── kernel
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│   ├── config.h
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│   ├── elf.c
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── elf.h
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── kernel.c
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   ├── kernel.lds
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>│   ├── machine
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│   │   ├── mentry.S
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   │   └── minit.c
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   ├── process.c
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│   ├── process.h
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── riscv.h
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   ├── strap.c
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│   ├── strap.h
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│   ├── strap_vector.S
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│   ├── syscall.c
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│   └── syscall.h
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>├── spike_interface
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── atomic.h
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── dts_parse.c
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── dts_parse.h
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── spike_file.c
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── spike_file.h
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   ├── spike_htif.c
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│   ├── spike_htif.h
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>│   ├── spike_memory.c
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│   ├── spike_memory.h
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>│   ├── spike_utils.c
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>│   └── spike_utils.h
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>├── user
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>│   ├── app_helloworld.c
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>│   ├── user.lds
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>│   ├── user_lib.c
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>│   └── user_lib.h
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>└── util
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    ├── functions.h
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>    ├── load_store.S
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    ├── snprintf.c
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>    ├── snprintf.h
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>    ├── string.c
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>    ├── string.h
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    └── types.h
+</span></code></pre></div>
+<p>在代码的根目录有以下文件：</p>
+<ul>
+<li>
+<p>Makefile文件，它是make命令即将使用的“自动化编译”脚本；</p>
+</li>
+<li>
+<p>LICENSE.txt文件，即riscv-pke的版权文件，里面包含了所有参与开发的人员信息。riscv-pke是开源软件，你可以以任意方式自由地使用，前提是使用时包含LICENSE.txt文件即可；</p>
+</li>
+<li>
+<p>README.md文件，一个简要的英文版代码说明。</p>
+</li>
+</ul>
+<p>另外是一些子目录，其中：</p>
+<ul>
+<li>kernel目录包含了riscv-pke的内核部分代码；</li>
+<li>spike_interface目录是riscv-pke内核与spike模拟器的接口代码（如设备树DTB、主机设备接口HTIF等），用于接口的初始化和调用；</li>
+<li>user目录包含了实验给定应用（如lab1_1中的app_helloworld.c），以及用户态的程序库文件（如lab1_1中的user_lib.c）；</li>
+<li>util目录包含了一些内核和用户程序公用的代码，如字符串处理（string.c），类型定义（types.h）等。</li>
+</ul>
+<h4 id="_4">环境验证</h4>
+<p>对于Ubuntu/WSL/openEuler用户（对于头歌用户，可以通过选择“命令行”标签，进入shell环境、进入提示的代码路径，开始构造过程），可以在代码的根目录（进入riscv-pke-prerelease子目录后）输入以下构造命令，应看到如下输出：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>make
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>compiling<span class="w"> </span>util/snprintf.c
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>compiling<span class="w"> </span>util/string.c
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>linking<span class="w">  </span>obj/util.a<span class="w"> </span>...
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Util<span class="w"> </span>lib<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>build<span class="w"> </span>into<span class="w"> </span><span class="s2">&quot;obj/util.a&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>compiling<span class="w"> </span>spike_interface/dts_parse.c
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>compiling<span class="w"> </span>spike_interface/spike_htif.c
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>compiling<span class="w"> </span>spike_interface/spike_utils.c
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>compiling<span class="w"> </span>spike_interface/spike_file.c
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>compiling<span class="w"> </span>spike_interface/spike_memory.c
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>linking<span class="w">  </span>obj/spike_interface.a<span class="w"> </span>...
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>Spike<span class="w"> </span>lib<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>build<span class="w"> </span>into<span class="w"> </span><span class="s2">&quot;obj/spike_interface.a&quot;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>compiling<span class="w"> </span>kernel/syscall.c
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>compiling<span class="w"> </span>kernel/elf.c
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>compiling<span class="w"> </span>kernel/process.c
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>compiling<span class="w"> </span>kernel/strap.c
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>compiling<span class="w"> </span>kernel/kernel.c
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>compiling<span class="w"> </span>kernel/machine/minit.c
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>compiling<span class="w"> </span>kernel/strap_vector.S
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>compiling<span class="w"> </span>kernel/machine/mentry.S
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>linking<span class="w"> </span>obj/riscv-pke<span class="w"> </span>...
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>PKE<span class="w"> </span>core<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>built<span class="w"> </span>into<span class="w"> </span><span class="s2">&quot;obj/riscv-pke&quot;</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>compiling<span class="w"> </span>user/app_helloworld.c
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>compiling<span class="w"> </span>user/user_lib.c
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>linking<span class="w"> </span>obj/app_helloworld<span class="w"> </span>...
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>User<span class="w"> </span>app<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>built<span class="w"> </span>into<span class="w"> </span><span class="s2">&quot;obj/app_helloworld&quot;</span>
+</span></code></pre></div>
+<p>如果环境安装不对（如缺少必要的支撑软件包），以上构造过程可能会在中间报错，如果碰到报错情况，请回到<a href="#environments">2.2</a>的环境安装过程检查实验环境的正确性。</p>
+<p>构造完成后，在代码根目录会出现一个obj子目录，该子目录包含了构造过程中所生成的所有对象文件（.o）、编译依赖文件（.d）、静态库（.a）文件，和最终目标ELF文件（如./obj/riscv-pke和./obj/app_helloworld）。</p>
+<p>这时，我们可以尝试借助riscv-pke内核运行app_helloworld的“Hello world!”程序：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>spike<span class="w"> </span>./obj/riscv-pke<span class="w"> </span>./obj/app_helloworld
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>In<span class="w"> </span>m_start,<span class="w"> </span>hartid:0
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>HTIF<span class="w"> </span>is<span class="w"> </span>available!
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">(</span>Emulated<span class="o">)</span><span class="w"> </span>memory<span class="w"> </span>size:<span class="w"> </span><span class="m">2048</span><span class="w"> </span>MB
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Enter<span class="w"> </span>supervisor<span class="w"> </span>mode...
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Application:<span class="w"> </span>./obj/app_helloworld
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Application<span class="w"> </span>program<span class="w"> </span>entry<span class="w"> </span>point<span class="w"> </span><span class="o">(</span>virtual<span class="w"> </span>address<span class="o">)</span>:<span class="w"> </span>0x0000000081000000
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Switching<span class="w"> </span>to<span class="w"> </span>user<span class="w"> </span>mode...
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>call<span class="w"> </span>do_syscall<span class="w"> </span>to<span class="w"> </span>accomplish<span class="w"> </span>the<span class="w"> </span>syscall<span class="w"> </span>and<span class="w"> </span>lab1_1<span class="w"> </span>here.
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>System<span class="w"> </span>is<span class="w"> </span>shutting<span class="w"> </span>down<span class="w"> </span>with<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>code<span class="w"> </span>-1.
+</span></code></pre></div>
+<p>如果能看到以上输出，riscv-pke的代码获取（和验证）就已经完成，可以开始实验了。</p>
+<p><a name="pke_experiemnts"></a></p>
+<h2 id="23-pke">2.3 PKE实验的组成</h2>
+<p>对于《操作系统原理》课堂来说，PKE实验由3组基础实验以及基础试验后的挑战实验组成（见图1.2）：</p>
+<ul>
+<li><strong>对于基础实验而言</strong>，第一组基础实验重点涉及系统调用、异常和外部中断的知识；第二组基础实验重点涉及主存管理方面的知识；第三组实验重点涉及进程管理方面的知识。基础实验部分实验指导文档较为详细，学生（读者）需要填写的代码量很小，可以看作是“阅读理解+填空”题，涉及的知识也非常基础。</li>
+<li><strong>对于挑战实验而言</strong>，每一组实验的挑战实验都可以理解为在该组实验上的挑战性内容，只给出题目（应用程序）和预期的效果（需要做到的目标）。这一部分实验指导文档只给出大的方向，需要学生（读者）查阅和理解较多课外内容，为实现预期的效果需要填写的代码量也较大，可以看作是“作文题”。</li>
+</ul>
+<p>如图1.2所示，<strong>基础实验部分存在继承性</strong>，即学生（读者）需要按照实线箭头的顺序依次完成实验，是不可跳跃的！这是因为PKE的实验设计，后一个实验依赖前一个实验的答案，在开始后一个实验前需要先将之前的答案继承下来（通过git commit/git merge命令）。</p>
+<p><strong>而挑战部分的实验只依赖于每组实验的最后一个实验</strong>，例如，如果学生（读者）完成了实验1的3个基础试验后，就可以开始做实验1的挑战实验了，不需要等到完成所有基础实验再开始。</p>
+<p><img alt="" src="../pictures/experiment_organization_withlab4.png" /></p>
+<p>图1.2 PKE实验的组织结构</p>
+<p><strong>PKE实验即可用于自学目的，也可以用于教学目的</strong>。对于自学的读者，可以完全按照<a href="https://gitee.com/hustos/pke-doc">PKE文档</a>，以及在gitee的代码仓库中所获得的代码进行；出于教学目的，所有的PKE实验，我们都在<a href="https://www.educoder.net/">头歌平台</a>进行了部署，实验结果的检测全部在头歌平台上进行，实验完成后头歌平台会生成实验情况的简报。教师可以根据简报，对学生的实验完成情况给出具体的分数。</p>
+<p>考虑到《操作系统原理》课堂的实验安排，很多学校（例如华中科技大学计算机学院）是将实验分成了两部分：课内实验和课程设计。如果采纳PKE实验，根据学生的水平，我们给出两个方案：</p>
+<p><strong>方案一（学生其他课程负担较重，或不希望实验太难的情况）：</strong></p>
+<ul>
+<li>课内实验包括所有的基础实验；</li>
+<li>课程设计学生可在每组实验中，选择（学生自选）一个挑战实验。</li>
+</ul>
+<p>这种情况，对于课内实验我们的建议是：每个基础实验=30分，每组实验总分90分；3组实验取平均分（总分仍然是90）后，总分加上实验报告的10分，等于课内实验的总分数；对于课程设计我们的建议是：每个挑战实验=30分，3个挑战实验总分求和（总分90），最后加上实验报告的10分，等于课程设计的总分数。</p>
+<p><strong>方案二（学生平均能力较强，且希望实验分数有区分度的情况）：</strong></p>
+<ul>
+<li>课内实验包括所有的基础实验，外加基础实验的1个（学生自选）挑战实验；</li>
+<li>课程设计学生可在每组实验中，选择之前未完成的一个挑战实验。</li>
+</ul>
+<p>这种情况，对于课内实验我们的建议是：每个基础实验=20分，外加一个挑战实验，每组实验总分是3*20+30=90分；3组实验取平均分（总分仍然是90）后，总分加上实验报告的10分，等于课内实验的总分数；对于课程设计我们的建议是：每个挑战实验=30分，3个挑战实验总分求和（总分90），最后加上实验报告的10分，等于课程设计的总分数。</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../chapter1_riscv/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter1 riscv" rel="prev">
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  上一页
+                </span>
+                Chapter1 riscv
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter3_traps/" class="md-footer__link md-footer__link--next" aria-label="下一页: Chapter3 traps" rel="next">
+            <div class="md-footer__title">
+              <div class="md-ellipsis">
+                <span class="md-footer__direction">
+                  下一页
+                </span>
+                Chapter3 traps
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 - 2023 Mr.Roll
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://space.bilibili.com/445528299" target="_blank" rel="noopener" title="一只roll" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "navigation.footer", "navigation.instant", "navigation.tracking", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.efa0ade1.min.js"></script>
+      
+        <script src="../../../javascripts/extra.js"></script>
+      
+        <script src="../../../javascripts/shortcuts.js"></script>
+      
+    
+  </body>
+</html>

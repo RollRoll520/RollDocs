@@ -2,10 +2,10 @@
 icon: material/video/3d
 ---
 
-# LearnGLTF
+# xr-frame资源
 
 !!! abstract "简介"
-    在微信小程序xr-frame框架通过gltf/glb实现AR+VR时由已有3D资源获取gltf/glb的一种解决方案
+    在微信小程序`xr-frame`框架下通过`gltf/glb`实现`AR+VR`时由已有3D资源获取`gltf/glb`的一种解决方案
 
 ## 从unity中导出gltf
 
@@ -24,27 +24,32 @@ icon: material/video/3d
     implement `KHR_texture_transform` (partial)
 
 !!! bug "可能存在的问题"
-    * XR-frame在接收glb/gltf资源文件时,可能会显示所需的`KHR_texture_transform`插件不存在，导致加载模型失败。
+    * `XR-frame`在接收`glb/gltf`资源文件时,可能会显示所需的`KHR_texture_transform`插件不存在，导致加载模型失败。
 
     * 并且在使用`XR-frame-cli`进行优化时存在网格索引过大的情况，只有在导出设置中勾选第1项第2项时才能成功。
 
 ### [SeinJSUnityToolkit](https://github.com/hiloteam/SeinJSUnityToolkit)
 
-1. 官方提示下载unitypackage到unity即可使用SeinToolkit，但是最新版的包导入项目中后存在问题，可能是因为版本不兼容。
-2. 通过文档中提示的通过npm创建sein命令行工具可以穿件sein项目**但下载的版本是1.2.6，最新版为1.3.3**，并且通过sein new创建的sein项目必须用
+1. 官方提示下载`unitypackage`到unity即可使用`SeinToolkit`，但是最新版的包导入项目中后存在问题，可能是因为版本不兼容。
+2. 通过文档中提示的通过npm创建sein命令行工具可以穿件sein项目**但下载的版本是1.2.6，最新版为1.3.3**，并且通过`sein new`创建的sein项目必须用
 
 === "导入fbx并导出"
     1. 导入fbx时出现无材质的现象
 
-!!! bug "踩的坑"
-    * 通过gltfpack的-cc拓展指令压缩的gltf模型无法正确import到sein项目中
+???+ bug "踩的坑"
+    * 通过`gltfpack`的-cc拓展指令压缩的`gltf`模型无法正确`import`到`sein`项目中
+    * `seinJS`导出的`gltf`文件也可能无法在`xr-frame`中打开，并不是完全优于`UniVRM`
+    * 相对于比较大的3D模型文件，`sein`的表现会比`UniVRM`
+    * 模型过大时`UniVRM`的导出没有压缩作用，但`seinJS`中必须使用的`sein/pbr`着色器调整不好会让模型较为严重地失真
+    * 因此当`seinJS`导入`xr-frame`中不起作用时应及时改用`UniVRM`
+    * `fbx`文件导入`unity`中无法显示背面
 
 ## 优化gltf文件
 
 ### [gltfpack](https://meshoptimizer.org/gltf/)优化压缩
 
 1. 在[gltfpack官网](https://meshoptimizer.org/gltf/)中获取合适的gltfpack版本
-2. 将gltfpack工具包下载到本地
+2. 将`gltfpack`工具包下载到本地
 3. 在工具包的路径下打开命令行窗口
 4. 通过`gltfpack -i scene.gltf -o scene.glb`将指定gltf/glb文件进行压缩到指定目录
 
@@ -71,20 +76,18 @@ icon: material/video/3d
     npm i xr-frame-cli
     ```
 
-2. 在外部通过管理员身份打开项目终端
+2. 打开命令行工具（因为已经全局添加了`xr-frame-cli`，任意一个目录下都可以使用该工具）
 3. 通过`xr-frame gltf -h`或`xr-frame env-data -h`获取工具使用指令
 
-!!! warning "gltfpack与xr-frame-cli的区别"
+!!! warning "`gltfpack`与`xr-frame-cli`的区别"
 
-    * gltfpack的对于文件大小的压缩效果明显高于xr-frame-cli
+    * `gltfpack`的对于文件大小的压缩效果明显高于`xr-frame-cli`
     
-    * gltfpack可以压缩glb/gltf两种格式；而xr-frame-cli仅能压缩gltf文件
+    * `gltfpack`可以压缩`glb/gltf`两种格式；而`xr-frame-cli`仅能压缩`gltf`文件
 
-    * gltfpack生成的gltf/glb文件可能在被xr-frame加载时存在错误
+    * `gltfpack`生成的`gltf/glb`文件可能在被`xr-frame`加载时存在错误
 
-!!! tip "Todo"
-    1. 完成模型的导出，并进行足够的优化
-    2. 成功加载场景模型
-    3. 实现相机的移动
-    4. 实现场景的交互，在场景中添加button
-    5. 实现AR
+## 获取环境数据env-data
+
+[xr-frame-cli](#xr-frame-cli优化压缩)提供了环境数据的生成功能。使用正确的环境贴图即可导出xr-frame所需的环境数据env-data
+因此关键在于获取**环境贴图**

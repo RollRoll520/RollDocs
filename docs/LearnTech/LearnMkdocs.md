@@ -2,7 +2,10 @@
 icon: material/file/document/edit
 ---
 
-# LearnMkdocs
+# Mkdocs文档用法
+
+!!! note "参考"
+    Click [MkDocs官网](https://squidfunk.github.io/mkdocs-material/)
 
 ## hide 的用法
 
