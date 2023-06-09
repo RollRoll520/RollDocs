@@ -8,7 +8,7 @@ icon:
 --- 
 <!-- 以上用于隐藏左侧导航栏和右侧导航栏 -->
 
-# Welcome to **Roll-Docs**\!
+# Welcome to **Roll-Docs**!
 
 > 欢迎来到我的个人文档。
 >
