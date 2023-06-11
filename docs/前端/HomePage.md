@@ -6,3 +6,11 @@
     - 目前仍打算用cra:simple-react:和antd:simple-antdesign:还有其他组件来实现
     - :material-cloud-sync:这就意味着我需要对我的云服务器:material-silverware-clean:清理一番
     - :material-alarm-check:加油吧！坚持下来!
+
+## Steps
+
+- 页面通过useScroll设计
+- 配置一个后台写博客
+- 设计数据库记录博客（考虑是否通过markdown形式）
+- 展示博客
+- 自我介绍等等
