@@ -24,4 +24,9 @@
         - [:simple-react: React-Spring](https://www.react-spring.dev/)
 ---
 
-## 系统侧重点
+## 记录
+
+!!! warning "Landing编辑器"
+    使用[`Landing`](https://landing.ant.design/index-cn)编辑器设计网页，导出后发现与antd5不兼容！
+    
+    确实挺好的，而且感觉比[`WebFlow`](https://webflow.com/)良心很多，只可惜不兼容antd5，并且是jsx项目
