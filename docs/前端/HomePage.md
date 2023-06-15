@@ -44,6 +44,6 @@
 ## record
 
 >- 了解到了一个很有风格的设计师（前端开发者）[302chanwoo](http://302chanwoo.com/),同样使用React库，并且使用了threeJS开发。`发现了他的github仓库！`[这里](https://github.com/302chanwoo)
->- [lottiefiles](https://lottiefiles.com/)这是一个比gif更轻量的animation格式，在这个网页上能够找到很多免费资源
-> 使用 Lottie JSON 或 dotLottie 动画作为图标、缩略图、页面背景、页面加载器、自定义动画光标等等。
->- [WebFlow](https://webflow.com/):Build with the power of code — without writing any(坑，要付费才能导出代码，作用不大)
+>- [lottiefiles](https://lottiefiles.com/)这是一个比gif更**轻量**的animation格式，在这个网页上能够找到很多免费资源
+> 使用 `Lottie JSON` 或 `dotLottie` 动画作为图标、缩略图、页面背景、页面加载器、自定义动画光标等等。
+>- [WebFlow](https://webflow.com/):`Build with the power of code — without writing any`(**坑，要付费才能导出代码，作用不大**)
