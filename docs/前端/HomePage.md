@@ -53,7 +53,7 @@
 
 ## failure
 
-!!! Failure "踩过的坑"
+!!! Failure ":cry:踩过的坑"
     >- 使用Link进行图标的跳转时间时出现了错误，可能会改变图标的样式
     >- 采用滚动动画时应该关闭用户滚轮输入，否则会出现卡顿
     >- 打包react文件时没有在package.json中指定homePage
