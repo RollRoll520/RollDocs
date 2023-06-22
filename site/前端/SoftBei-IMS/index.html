@@ -686,6 +686,19 @@
     记录
   </a>
   
+    <nav class="md-nav" aria-label="记录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0622record" class="md-nav__link">
+    0622record
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -733,6 +746,19 @@
   <a href="#_1" class="md-nav__link">
     记录
   </a>
+  
+    <nav class="md-nav" aria-label="记录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0622record" class="md-nav__link">
+    0622record
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -806,6 +832,77 @@
 <p>确实挺好的，而且感觉比<a href="https://webflow.com/"><code>WebFlow</code></a>良心很多，只可惜不兼容antd5，并且是jsx项目</p>
 <p>虽然无法正常使用，但可以从下载的代码中进行学习</p>
 </blockquote>
+</div>
+<h3 id="0622record">0622record</h3>
+<div class="admonition abstract">
+<p class="admonition-title">尝试修改lottieFile的加载方式</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:4"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><input id="__tabbed_2_4" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">origin:通过assets中加载</label><label for="__tabbed_2_2">polish:优化为按需加载</label><label for="__tabbed_2_3">polish:优化为懒加载</label><label for="__tabbed_2_4">update:通过url加载lottie</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ul>
+<li>通过<code>MyLottie</code>组件对<code>assets</code>中的<code>json</code>文件进行遍历加载</li>
+<li>在刚加载完页面时会出现短时间的卡顿现象
+<div class="language-ts highlight"><span class="filename">加载所有lottie文件</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">req</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">.</span><span class="nx">context</span><span class="p">(</span><span class="s2">&quot;../../assets/&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="sr">/\.json$/</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">req</span><span class="p">.</span><span class="nx">keys</span><span class="p">().</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">filename</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">data</span><span class="p">[</span><span class="nx">filename</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\.\/(.+)\.json/</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;$1&quot;</span><span class="p">)]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">req</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">});</span>
+</span></code></pre></div></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li>原来的方式在组件挂载时会将所有的 <code>lottie</code> 文件都加载进来，这样会占用较多的内存和网络带宽，因此当文件夹下的 <code>Lottie</code> 文件较多时，可能会导致页面加载缓慢或者卡顿。</li>
+<li>修改为：将 <code>Lottie JSON</code> 文件的加载放在组件的回调函数中，在组件的 <code>onLoad</code> 回调函数中加载 <code>Lottie JSON</code> 文件，这样只有当组件实际需要加载某个 <code>lottie</code> 文件时才会进行加载。</li>
+<li>效果：<strong>非常明显！</strong>减少了明显的卡顿，也优化了内存和网络带宽
+<div class="language-js highlight"><span class="filename">按需加载lottie文件</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">useEffect</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">fetchData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="k">import</span><span class="p">(</span><span class="sb">`../../assets/</span><span class="si">${</span><span class="nx">type</span><span class="si">}</span><span class="sb">.json`</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="nx">setAnimationData</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">};</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nx">fetchData</span><span class="p">();</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">},</span><span class="w"> </span><span class="p">[</span><span class="nx">type</span><span class="p">]);</span>
+</span></code></pre></div></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul>
+<li><strong>懒加载</strong>是指将组件或模块的加载推迟到组件或模块首次使用时再进行加载。</li>
+<li>使用 <code>React.lazy</code> 来动态加载 <code>lottie</code> 组件，然后使用 <code>Suspense</code> 组件来包裹需要懒加载的组件，并提供一个 <code>fallback</code> 属性，指定组件加载时的 <code>loading</code> 界面。这样，在组件首次使用时才会进行加载，可以有效地优化页面加载性能。</li>
+<li>效果：懒加载用于优化页面加载性能，但实际上我们的页面的所有组件在首次加载时都使用到了，因此<strong>优化效果不明显</strong>。</li>
+<li>优点：提供了<strong>资源加载未成功的loading元素</strong>
+<div class="language-js highlight"><span class="filename">懒加载lottie组件</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">lazy</span><span class="p">,</span><span class="w"> </span><span class="nx">Suspense</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;react&quot;</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">LazyMyLottie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lazy</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="k">import</span><span class="p">(</span><span class="s2">&quot;./MyLottie&quot;</span><span class="p">));</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">App</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="o">&lt;</span><span class="nx">Suspense</span><span class="w"> </span><span class="nx">fallback</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;}&gt;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">                </span><span class="o">&lt;</span><span class="nx">LazyMyLottie</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;lottie1&quot;</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">            </span><span class="o">&lt;</span><span class="err">/Suspense&gt;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="o">&lt;</span><span class="nx">Suspense</span><span class="w"> </span><span class="nx">fallback</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;}&gt;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">                </span><span class="o">&lt;</span><span class="nx">LazyMyLottie</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;lottie2&quot;</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">            </span><span class="o">&lt;</span><span class="err">/Suspense&gt;</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">            </span><span class="o">&lt;</span><span class="nx">Suspense</span><span class="w"> </span><span class="nx">fallback</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/div&gt;}&gt;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">              </span><span class="o">&lt;</span><span class="nx">LazyMyLottie</span><span class="w"> </span><span class="nx">type</span><span class="o">=</span><span class="s2">&quot;lottie3&quot;</span><span class="w"> </span><span class="o">/&gt;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="o">&lt;</span><span class="err">/Suspense&gt;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">App</span><span class="p">;</span>
+</span></code></pre></div></li>
+</ul>
+</div>
+<div class="tabbed-block">
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>finish</strong></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>todo</strong>:修改客户端代理，避开cors策略</li>
+<li>当<code>lottie</code>文件过多时，存在需要将<code>lottie</code>文件集中放在服务器中的需求。</li>
+<li>当前的<code>lottie</code>加载只能通过本地文件加载。</li>
+<li>希望设计的组件使用方式足够简洁，便于使用，且不影响原来本地<code>lottie</code>的使用。</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 
 
