@@ -22,6 +22,7 @@
         - [:simple-antdesign:  Antd](https://ant.design/index-cn)
         - [:simple-antdesign:  Antv](https://antv.vision/)
         - [:simple-react: React-Spring](https://www.react-spring.dev/)
+
 ---
 
 ## 记录
@@ -93,3 +94,17 @@
         - 当`lottie`文件过多时，存在需要将`lottie`文件集中放在服务器中的需求。
         - 当前的`lottie`加载只能通过本地文件加载。
         - 希望设计的组件使用方式足够简洁，便于使用，且不影响原来本地`lottie`的使用。
+
+---
+
+### 0625record
+
+!!! abstract ":sob:今天的任务：通过代理:material-code-tags:解决跨域！"
+        === "问题分析"
+            - 客户端未设置代理
+            - [ ] 未完成，因为收到了**chanwoo hwang**的回信
+            - **OpenGL**真的需要好好学学！
+            - [gsap](https://greensock.com/gsap/)不错的库！chan推荐的
+        === "尝试结论"
+            - json不同于图片，图片不受浏览器cors影响，而json会受到限制
+            - 或许目前来说，将json文件放在同一域下最合适，**毕竟lottie很轻量！**
