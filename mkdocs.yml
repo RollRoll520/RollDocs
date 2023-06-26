@@ -6,8 +6,8 @@ edit_uri: edit/master/docs/
 theme:
   name: material #主题，使用内置主题，也可以在extra_css中定义
   language: zh 
-  logo: https://roll0814.cn/ftp-images/roll/indexIcon.jpg #左上角logo
-  favicon: https://roll0814.cn/ftp-images/roll/indexIcon.jpg #页面图标
+  logo: https://roll0814.cn/ftp-images/roll/indexIcon.png #左上角logo
+  favicon: https://roll0814.cn/ftp-images/roll/indexIcon.png #页面图标
   features:
     - content.action.edit #提供修改功能
     # - header.autohide #滚动时自动隐藏首部

@@ -99,7 +99,7 @@
 
 ### 0625record
 
-!!! abstract ":sob:今天的任务：通过代理:material-code-tags:解决跨域！"
+!!! failure ":sob:今天的任务：通过代理:material-code-tags:解决跨域！"
         === "问题分析"
             - 客户端未设置代理
             - [ ] 未完成，因为收到了**chanwoo hwang**的回信
@@ -108,3 +108,14 @@
         === "尝试结论"
             - json不同于图片，图片不受浏览器cors影响，而json会受到限制
             - 或许目前来说，将json文件放在同一域下最合适，**毕竟lottie很轻量！**
+
+---
+
+### 0626record
+
+!!! abstract ":sob:今天的任务：添加:material-code-tags:训练页的布局！"
+        === "todo任务"
+            - [ ] 学习**easyDL**的布局进行设计
+            - [ ] 使用合适的**lottie**动画进行美化
+            - [ ] 添加**大幅**的的动画
+            - [ ] **整齐美观**的布局
