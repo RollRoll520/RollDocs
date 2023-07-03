@@ -27,7 +27,7 @@
 
 ## 记录
 
-!!! warning "Landing编辑器"
+??? warning "Landing编辑器"
     > 使用[`Landing`](https://landing.ant.design/index-cn)编辑器设计网页，导出后发现与antd5不兼容！
     >
     > 确实挺好的，而且感觉比[`WebFlow`](https://webflow.com/)良心很多，只可惜不兼容antd5，并且是jsx项目
@@ -36,7 +36,7 @@
 
 ### 0622record
 
-!!! abstract "尝试修改lottieFile的加载方式"
+???+ abstract "尝试修改lottieFile的加载方式"
     === "origin:通过assets中加载"
         - 通过`MyLottie`组件对`assets`中的`json`文件进行遍历加载
         - 在刚加载完页面时会出现短时间的卡顿现象
@@ -99,38 +99,86 @@
 
 ### 0625record
 
-!!! failure ":sob:今天的任务：通过代理:material-code-tags:解决跨域！"
-        === "问题分析"
-            - 客户端未设置代理
-            - [ ] 未完成，因为收到了**chanwoo hwang**的回信
-            - **OpenGL**真的需要好好学学！
-            - [gsap](https://greensock.com/gsap/)不错的库！chan推荐的
-        === "尝试结论"
-            - json不同于图片，图片不受浏览器cors影响，而json会受到限制
-            - 或许目前来说，将json文件放在同一域下最合适，**毕竟lottie很轻量！**
+???+ failure ":sob:今天的任务：通过代理:material-code-tags:解决跨域！"
+    === "问题分析"
+        - 客户端未设置代理
+        - [ ] 未完成，因为收到了**chanwoo hwang**的回信
+        - **OpenGL**真的需要好好学学！
+        - [gsap](https://greensock.com/gsap/)不错的库！chan推荐的
+    === "尝试结论"
+        - json不同于图片，图片不受浏览器cors影响，而json会受到限制
+        - 或许目前来说，将json文件放在同一域下最合适，**毕竟lottie很轻量！**
 
 ---
 
 ### 0626record
 
-!!! abstract ":sob:今天的任务：添加:material-code-tags:训练页的布局！"
-        === "todo任务"
-            - [x] 学习**easyDL**的布局进行设计
-            - [x] 使用合适的**lottie**动画进行美化
-            - [x] 添加**大幅**的的动画
-            - [x] **整齐美观**的布局
+???+ abstract ":sob:今天的任务：添加:material-code-tags:训练页的布局！"
+    === "todo任务"
+        - [x] 学习**easyDL**的布局进行设计
+        - [x] 使用合适的**lottie**动画进行美化
+        - [x] 添加**大幅**的的动画
+        - [x] **整齐美观**的布局
 
 ### 0628record
 
-!!! success ":angel:完成0626的任务，并且进行了配色调整！"
-        === "experience"
-            - 花了很久修改`antd`中步骤条`Steps`组件的样式，但是**无法正常修改！**修改后无法正常使用！
-            - 增加了训练页和测试页的退出功能。
-            - 写了一个退出警告的提示框，但是似乎**复用性不高！**因为需要在使用的时候传递`onOK`和`onCancel`函数。
-            - 发现**需要增加展示数据集记录、结果记录**的页面，因为在上传训练集或者测试集之后，这些信息对于用户来说就**无法回溯**了，并且当训练请求出现问题后，训练将不可恢复。
-        === ":rocket:todo"
-            - [ ] 为训练页和测试页添加跳转功能
-            - [ ] 设计合适的布局，保证**界面简洁、人机交互好**
-            - [ ] 浅尝**antv**
-            - [ ] 添加身份认证功能（暂时使用**zja**的后端）
-            - [ ] 需要开始调整后端，拓展**zja**后端
+???+ success ":angel:完成0626的任务，并且进行了配色调整！"
+    === "experience"
+        - 花了很久修改`antd`中步骤条`Steps`组件的样式，但是**无法正常修改！**修改后无法正常使用！
+        - 增加了训练页和测试页的退出功能。
+        - 写了一个退出警告的提示框，但是似乎**复用性不高！**因为需要在使用的时候传递`onOK`和`onCancel`函数。
+        - 发现**需要增加展示数据集记录、结果记录**的页面，因为在上传训练集或者测试集之后，这些信息对于用户来说就**无法溯**了，并且当训练请求出现问题后，训练将不可恢复。
+    === ":rocket:todo（replaced by **0701discuss**）"
+        1. [ ] 为训练页和测试页添加跳转功能
+        - [ ] 设计合适的布局，保证**界面简洁、人机交互好**
+        - [ ] 浅尝**antv**
+        - [ ] 添加身份认证功能（暂时使用**zja**的后端）
+        - [ ] 需要开始调整后端，拓展**zja**后端
+
+### 0701discuss
+
+???+ abstract ":thought_balloon:明确开发思路"
+    === "下一步"
+        1. [ ] 训练模型**对应**测试模型，训练完模型之后可以提供下载。
+        - [ ] 测试模型时可以选择上传模型，也可以选择测试提供的默认模型。
+        - [ ] 训练模型**耗时较长**，测试模型**耗时较短**。
+        - [ ] 提供账户登录，可以提供训练记录，但要对此进行数据库的设计。
+    === "系统逻辑"
+        1. 在训练模型页面上传数据集（仅仅上传**csv**文件），点击训练直接训练。
+        - 后端将上传的数据集按照制定命名方式（**csv/用户名/1+.csv**）储存。
+        - 异步调用**train_model**来进行模型的训练。
+        - 训练时根据**中间过程返回值**来展示训练进度。
+        - 训练结束时展示训练结果（机器学习模型无结果，神经网络模型有结果）。
+        - 提供下载模型的方法（根据**数据集命名方式**）。
+        - **提示**用户**前往**在线测试页对刚才下载的模型进行测试。
+        - 进行测试时可以**选择**是否上传模型进行测试。
+
+### 0703record
+
+???+ abstract "通过反向代理同源跨域问题"
+    === "问题分析"
+        - 在之前的开发中使用的是**koa-cors**对跨域问题进行处理。
+        - 但在实际过程中**koa-cors**的使用上具有**局限性**，比如无法对本地运行的客户端提供服务。
+        - 尝试通过配置**nginx**来对请求进行代理，同时可以屏蔽服务端运行的端口。
+    === "实现代码"
+        ```md
+        location /zja {
+            proxy_pass http://example.com:port;
+            # 设置响应头，允许跨域请求
+            add_header 'Access-Control-Allow-Origin' 'http://localhost:3000';
+            add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
+            add_header 'Access-Control-Allow-Credentials' 'true';
+
+            # 处理 OPTIONS 请求
+            if ($request_method = 'OPTIONS') {
+                add_header 'Access-Control-Allow-Origin' 'http://localhost:3000';
+                add_header 'Access-Control-Allow-Methods' 'GET, POST, PUT, DELETE, OPTIONS';
+                add_header 'Access-Control-Allow-Headers' 'Content-Type, Authorization';
+                add_header 'Access-Control-Allow-Credentials' 'true';
+                add_header 'Content-Length' 0;
+                return 204;
+            }
+      
+        }
+        ```
