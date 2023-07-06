@@ -303,6 +303,6 @@ icon: material/file/document/edit
     ```
 !!! warning "注意"
     - 载入表格的效果比较局限，合并等其他效果均无法实现
-    - 最后的效果与普通的data table类似
+    - 最后的效果与普通的**data table**类似
     - 文档打开时无法载入
-    - 文档中对载入语句注释无效
+    - 文档中对载入语句注释无效（**mkdocs**的文法与**markdown**的注释存在冲突）
