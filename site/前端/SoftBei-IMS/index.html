@@ -1270,7 +1270,7 @@
 <h3 id="0709mind">0709Mind</h3>
 <details class="example" open="open">
 <summary>根据需求优化后端接口</summary>
-<div class="tabbed-set tabbed-alternate" data-tabs="12:3"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><input id="__tabbed_12_3" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">reason</label><label for="__tabbed_12_2">decision</label><label for="__tabbed_12_3">idea</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="12:5"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><input id="__tabbed_12_3" name="__tabbed_12" type="radio" /><input id="__tabbed_12_4" name="__tabbed_12" type="radio" /><input id="__tabbed_12_5" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">reason</label><label for="__tabbed_12_2">decision</label><label for="__tabbed_12_3">idea about backend</label><label for="__tabbed_12_4">idea about frontend</label><label for="__tabbed_12_5">minor idea</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
@@ -1288,26 +1288,69 @@
 </ol>
 </div>
 <div class="tabbed-block">
-<div class="tabbed-set tabbed-alternate" data-tabs="13:2"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">dataset</label><label for="__tabbed_13_2">record</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="13:4"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><input id="__tabbed_13_3" name="__tabbed_13" type="radio" /><input id="__tabbed_13_4" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">dataset</label><label for="__tabbed_13_2">record</label><label for="__tabbed_13_3">result</label><label for="__tabbed_13_4">model</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <ol>
-<li>用户上传的所有数据集<strong>都进行保留</strong></li>
-<li>数据集的<strong>id不递增</strong>，而是根据<strong>YY_MM_001</strong>命名</li>
+<li>用户上传的所有数据集<strong>都将保留</strong></li>
+<li>数据集的<strong>id不递增</strong>，而是根据<strong>YY_MM_DD_001</strong>命名,命名时需要根据当前数据库顶部id设置（确保不重复）</li>
 <li>为用户的数据集添加<strong>remark</strong>字段进行备注，并提供<strong>添加以及修改备注</strong>的功能</li>
 <li>为用户的数据集添加<strong>isDeleted</strong>字段，并提供<strong>删除数据集</strong>的功能</li>
-<li>为数据集添加状态<strong>未完成</strong>、<strong>已完成</strong></li>
+<li>为用户的数据集提供<strong>获取</strong>功能</li>
+<li>为数据集添加状态<strong>未完成</strong>、<strong>已完成</strong>、<strong>隐藏</strong></li>
+<li><strong>我们会为你保留训练/测试集，但仅提供10条结果</strong></li>
 </ol>
 </div>
 <div class="tabbed-block">
 <ol>
-<li>为记录添加<strong>isDeleted</strong>字段，并提供删除记录的功能</li>
-<li>记录的isDeleted改变应跟随dataset的改变而改变</li>
-<li>记录<strong>删除的同时</strong>删除结果</li>
+<li>为记录添加<strong>isExpired</strong>字段，并提供删除记录的功能</li>
+<li>记录的<strong>isExpired</strong>改变应跟随dataset的改变而改变</li>
+<li>记录<strong>删除的同时</strong>删除结果文件</li>
+<li>提供展示<strong>isExpired</strong>的记录的接口，但在前端不提供其获取result的方法</li>
+<li><strong>我们会为你保存所有训练/测试记录，但仅支持5条有效训练记录/10条有效测试记录</strong></li>
+<li><strong>你仍可以查看失效记录，但无法通过失效记录获取结果文件</strong></li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>提供<strong>删除</strong>接口，当记录isExpired时<strong>unlink当前的结果文件</strong></li>
+<li>为结果添加<strong>isDeleted</strong>字段，当结果删除时<strong>将该字段置为true</strong></li>
+<li>由于在测试需要获取当前用户拥有的模型，因此应该<strong>为TrainResult添加u_id的外键</strong></li>
+<li>将TrainResult的<strong>modelName</strong>字段改为<strong>modelRemark</strong>用于对模型文件进行<strong>备注</strong></li>
+<li>为TrainResult添加根据u_id获取<strong>模型文件信息</strong>的功能（用于<strong>选择</strong>）</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<ol>
+<li><strong>train</strong>不再使用当前用户最新的数据集<strong>getLatest</strong></li>
+<li><strong>train</strong>根据用户传入的<strong>dataset_id</strong>判断是否属于当前用户，判断是否为训练集</li>
+<li><strong>train</strong>还需要根据用户传入的remark对<strong>modelRemark</strong>进行备注</li>
+<li><strong>defaultTest</strong>添加对<strong>dataset_id</strong>的<strong>validate</strong></li>
+<li><strong>customTest</strong></li>
 </ol>
 </div>
 </div>
 </div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="14:2"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">OnlineTrain</label><label for="__tabbed_14_2">OnlineTest</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<ol>
+<li>将路由改为<strong>OnlineTrain</strong></li>
+<li>添加训练集的展示，<strong>0/10</strong>,表示当前有效的测试集</li>
+<li>添加数据服务页面</li>
+</ol>
+</div>
+<div class="tabbed-block"></div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<ol>
+<li>添加注册功能（需要提供邮箱或短信验证），或提供相应身份注册码。</li>
+<li>添加漫游式指引（通过antd组件实现，需要判断是否需要漫游式指引）</li>
+</ol>
 </div>
 </div>
 </div>
